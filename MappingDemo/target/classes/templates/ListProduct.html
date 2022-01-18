@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>List Of Products</title>
+<style type="text/css">
+td{
+	padding: 5px;
+}
+</style>
+</head>
+<body>
+<br><br><br>
+<div align="center">
+<br>
+<form th:href="@{/search}" method="get">
+Search: <input type="text" name="keyword" th:value="${keyword}"><br>
+<br>
+<input type="submit" value="Search" /><br>
+<br>
+</form>
+<table border="1">
+<tr>
+<th>Id</th>
+<th>Name</th>
+<th>Price</th>
+<th>Category</th>
+<th>Action</th>
+</tr>
+<tr th:each="p : ${list}">
+<td>[[${p.id}]]</td>
+<td>[[${p.name}]]</td>
+<td>[[${p.price}]]</td>
+<td>[[${p.category.name}]]</td>
+<td><a th:href="@{/UpdateProduct(id=${p.id})}">Update</a> || <a th:href="@{/deleteProduct(id=${p.id})}">Delete</a></td>
+</tr>
+</table>
+</div>
+</body>
+</html>
